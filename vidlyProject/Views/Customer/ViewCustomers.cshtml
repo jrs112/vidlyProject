@@ -1,0 +1,37 @@
+﻿
+@model vidlyProject.ViewModels.CustomerViewModel
+@{
+    ViewBag.Title = "ViewCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View Customers</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <h1>No Customer To List</h1>
+}
+else
+{
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Membership Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Edit", "Customer", new { id = customer.Id }, null)</td>
+                    <td>@customer.MembershipType.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
